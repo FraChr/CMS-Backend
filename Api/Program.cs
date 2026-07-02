@@ -5,7 +5,6 @@ using Api.Model;
 using Api.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client.Extensions.Msal;
 
 namespace Api;
 
