@@ -1,6 +1,6 @@
 ﻿namespace Api.Model;
 
-public class FileOptions
+public class FileStorageOptions
 {
     public string[] AllowedExtensions { get; set; } = [];
 }

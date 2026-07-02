@@ -1,4 +1,4 @@
-﻿namespace Domain.Model;
+﻿namespace Api.Model;
 
 public class Certificate
 {
@@ -8,4 +8,6 @@ public class Certificate
     public string NotifiedBody { get; set; }
     public DateTime IssueDate { get; set; }
     public DateTime ExpiryDate { get; set; }
+
+    public string FilePath { get; set; }
 }
