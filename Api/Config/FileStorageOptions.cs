@@ -1,4 +1,4 @@
-﻿namespace Api.Model;
+﻿namespace Api.Config;
 
 public class FileStorageOptions
 {
