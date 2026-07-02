@@ -16,7 +16,7 @@ public class CertificateService : ICertificateService
         _fileStorageService = fileStorageService;
     }
 
-    public async Task<List<Certificate>> GetCertificatesAsync(CertificateFilter filter)
+    public async Task<List<CertificateView>> GetCertificatesAsync(CertificateFilter filter)
     {
         var query = _context.Certificates.AsQueryable();
 
@@ -29,8 +29,16 @@ public class CertificateService : ICertificateService
         {
             query = query.Where(x => x.Type == filter.Type);
         }
-        
-        return await query.ToListAsync();
+
+        return await query
+            .Select(x => new CertificateView
+            {
+                Type = x.Type,
+                Number = x.Number,
+                NotifiedBody = x.NotifiedBody,
+                IssueDate = x.IssueDate,
+                ExpiryDate = x.ExpiryDate,
+            }).ToListAsync();
     }
     
     
