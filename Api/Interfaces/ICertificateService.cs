@@ -1,6 +1,11 @@
-﻿namespace Api.Interfaces;
+﻿using Api.Dtos;
+using Api.Model;
 
-public class ICertificateService
+namespace Api.Interfaces;
+
+public interface ICertificateService
 {
-    
+    public Task<List<Certificate>> GetCertificatesAsync(CertificateFilter filter);
+    public Task<Certificate> UploadCertificate(Certificate certificate, IFormFile file);
+    public Task<CertificateFileResult> GetCertificateFileAsync(int id);
 }
