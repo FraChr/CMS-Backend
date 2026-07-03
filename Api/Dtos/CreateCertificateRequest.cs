@@ -6,5 +6,5 @@ public class CreateCertificateRequest
     public int Number { get; set; }
     public string NotifiedBody { get; set; } = "";
     public DateTime IssueDate { get; set; }
-    public DateTime ExpirationDate { get; set; }
+    public DateTime ExpiryDate { get; set; }
 }
