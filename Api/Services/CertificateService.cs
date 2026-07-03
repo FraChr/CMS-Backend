@@ -1,6 +1,7 @@
 ﻿using Api.Dtos;
 using Api.Interfaces;
 using Api.Model;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api.Services;
@@ -33,6 +34,7 @@ public class CertificateService : ICertificateService
         return await query
             .Select(x => new CertificateView
             {
+                Id = x.Id,
                 Type = x.Type,
                 Number = x.Number,
                 NotifiedBody = x.NotifiedBody,
@@ -72,11 +74,18 @@ public class CertificateService : ICertificateService
         
         var fileStream = await _fileStorageService.GetFileAsync(certificate.FilePath);
 
+        var provider = new FileExtensionContentTypeProvider();
+
+        if (!provider.TryGetContentType(certificate.FilePath, out var contentType))
+        {
+            contentType = "application/octet-stream";
+        }
+
         return new CertificateFileResult
         {
             Stream = fileStream,
             FileName = certificate.FilePath,
-            ContentType = "application/pdf"
+            ContentType = contentType
         };
     }
 }

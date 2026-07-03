@@ -42,6 +42,5 @@ public class LocalFileStorageService : IFileStorageService
     {
         var path = Path.Combine(Directory.GetCurrentDirectory(), "uploads", fileName);
         return new FileStream(path, FileMode.Open, FileAccess.Read);
-        
     }
 }
