@@ -27,9 +27,21 @@ public class Program
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("CorsPolicy", policy =>
+            {
+                policy.WithOrigins("http://localhost:5173")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
+
         var app = builder.Build();
 
-
+        
+        app.UseCors("CorsPolicy");
+        
         app.MapGet("/certificates", async (
             [AsParameters] CertificateFilter filter,
             ICertificateService service) =>
@@ -52,7 +64,7 @@ public class Program
             
         });
 
-        app.MapPost("/certificate/upload", async (
+        app.MapPost("/certificates/upload", async (
             [FromForm] CreateCertificateRequest request,
             IFormFile file,
             ICertificateService service) =>
@@ -63,7 +75,7 @@ public class Program
                 Number = request.Number,
                 NotifiedBody = request.NotifiedBody,
                 IssueDate = request.IssueDate,
-                ExpiryDate =  request.ExpirationDate
+                ExpiryDate =  request.ExpiryDate
             };
             
             var created = await service.UploadCertificate(certificate, file);
