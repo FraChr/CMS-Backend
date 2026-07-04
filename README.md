@@ -1,1 +1,22 @@
-# Test
+# Backend CMS API
+
+## Overview
+This is an api built with ef core minimal apis.
+it uses Sqlite database with persistant local storage for upload and migrations via ef core
+
+
+## Tech Stack
+- .NET 10
+- ASP.NET Core Web Api
+- Entity Framework Core
+- SQLite
+
+
+## Prerquisite
+- .NET SDK 10
+
+## Run
+- Clone repo
+- cd CMS-Backend/Api
+- dotnet restore
+- dotnet run
