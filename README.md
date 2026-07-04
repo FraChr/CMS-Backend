@@ -15,6 +15,12 @@ it uses Sqlite database with persistant local storage for upload and migrations 
 ## Prerquisite
 - .NET SDK 10
 
+## Frontend
+
+The frontend for this project is located at a seperate repo
+
+[Vue Frontend](https://github.com/FraChr/CMS-Frontend)
+
 ## Run
 - Clone repo
 - cd CMS-Backend/Api
