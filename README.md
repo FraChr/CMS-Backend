@@ -22,7 +22,13 @@ The frontend for this project is located at a seperate repo
 [Vue Frontend](https://github.com/FraChr/CMS-Frontend)
 
 ## Run
+
 - Clone repo
-- cd CMS-Backend/Api
-- dotnet restore
-- dotnet run
+
+```sh
+cd CMS-Backend/Api
+```
+#### Run API
+```sh
+dotnet run
+```
