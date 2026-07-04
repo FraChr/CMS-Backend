@@ -14,8 +14,11 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         
+        /*builder.Services.AddDbContext<Context>(options => 
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));*/
+        
         builder.Services.AddDbContext<Context>(options => 
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
         builder.Services.AddScoped<ICertificateService, CertificateService>();
         builder.Services.AddScoped<IFileStorageService, LocalFileStorageService>();
@@ -49,7 +52,7 @@ public class Program
             var items = await service.GetCertificatesAsync(filter);
             return Results.Ok(items);
         });
-
+    
         app.MapGet("/certificates/{id}/file", async (
             int id,
             ICertificateService service) =>
