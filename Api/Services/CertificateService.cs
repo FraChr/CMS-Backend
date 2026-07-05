@@ -44,6 +44,7 @@ public class CertificateService : ICertificateService
     }
     
     
+    
     public async Task<Certificate> UploadCertificate(Certificate certificate, IFormFile file)
     {
         try
@@ -86,6 +87,19 @@ public class CertificateService : ICertificateService
             Stream = fileStream,
             FileName = certificate.FilePath,
             ContentType = contentType
+        };
+    }
+
+    public async Task<CertificateTypes> GetCertificateTypesAsync()
+    {
+        var types = await _context.Certificates
+            .Select(x => x.Type)
+            .Distinct()
+            .ToListAsync();
+        
+        return new CertificateTypes
+        {
+            Types = types
         };
     }
 }
