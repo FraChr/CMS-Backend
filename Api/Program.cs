@@ -64,6 +64,13 @@ public class Program
             
         });
 
+        app.MapGet("certificates/types", async (ICertificateService service) =>
+        {
+            var result = await service.GetCertificateTypesAsync();
+            
+            return Results.Ok(result.Types);
+        });
+
         app.MapPost("/certificates/upload", async (
             [FromForm] CreateCertificateRequest request,
             IFormFile file,
